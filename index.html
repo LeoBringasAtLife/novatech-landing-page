@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>NovaTech</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.7s ease;
+    }
+    .fade-up.show {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 dark:text-gray-200 transition duration-500">
+
+<!-- Progress Bar -->
+<div id="progressBar" class="fixed top-0 left-0 h-1 bg-indigo-600 z-50 w-0"></div>
+
+<!-- Navbar -->
+<nav class="fixed w-full bg-white/70 dark:bg-gray-800/70 backdrop-blur shadow-sm z-40">
+  <div class="max-w-6xl mx-auto px-6 py-3 flex justify-between items-center">
+
+    <h1 class="text-lg font-semibold text-indigo-600">NovaTech</h1>
+
+    <div class="hidden md:flex space-x-6 text-sm">
+      <a href="#home" class="hover:text-indigo-600">Home</a>
+      <a href="#features" class="hover:text-indigo-600">Features</a>
+      <a href="#pricing" class="hover:text-indigo-600">Pricing</a>
+      <a href="#contact" class="hover:text-indigo-600">Contact</a>
+    </div>
+
+    <div class="flex items-center space-x-3">
+      <button id="darkToggle" class="text-sm bg-indigo-600 text-white px-3 py-1.5 rounded">
+        Dark
+      </button>
+
+      <button id="menuBtn" class="md:hidden text-xl">☰</button>
+    </div>
+
+  </div>
+
+  <!-- Mobile Menu -->
+  <div id="mobileMenu" class="hidden md:hidden bg-white dark:bg-gray-800 px-6 py-4 space-y-3 text-sm">
+    <a href="#home" class="block">Home</a>
+    <a href="#features" class="block">Features</a>
+    <a href="#pricing" class="block">Pricing</a>
+    <a href="#contact" class="block">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="home" class="min-h-screen flex items-center justify-center text-center px-6">
+  <div class="fade-up max-w-2xl">
+    <h2 class="text-3xl md:text-4xl font-bold mb-4">
+      Build Smarter Digital Products
+    </h2>
+    <p class="text-gray-600 dark:text-gray-400 text-sm md:text-base mb-6">
+      We help startups and developers create scalable, modern and high-performing web platforms.
+    </p>
+    <a href="#pricing" class="bg-indigo-600 text-white px-6 py-2.5 rounded text-sm hover:bg-indigo-700 transition">
+      Get Started
+    </a>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section id="features" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto">
+    <h3 class="text-2xl font-semibold text-center mb-12 fade-up">
+      Core Features
+    </h3>
+
+    <div class="grid md:grid-cols-3 gap-8 text-sm">
+
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow fade-up">
+        <h4 class="font-semibold mb-2">Fast Performance</h4>
+        <p class="text-gray-500 dark:text-gray-400">
+          Optimized architecture ensuring blazing fast load times.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow fade-up">
+        <h4 class="font-semibold mb-2">Modern UI</h4>
+        <p class="text-gray-500 dark:text-gray-400">
+          Clean and minimal interface built with Tailwind CSS.
+        </p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-6 rounded-lg shadow fade-up">
+        <h4 class="font-semibold mb-2">Secure System</h4>
+        <p class="text-gray-500 dark:text-gray-400">
+          Built following industry best security practices.
+        </p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- COUNTERS -->
+<section class="py-16 bg-indigo-600 text-white text-center">
+  <div class="max-w-5xl mx-auto grid md:grid-cols-3 gap-8">
+
+    <div>
+      <h4 class="text-3xl font-bold counter" data-target="1200">0</h4>
+      <p class="text-sm mt-2">Active Users</p>
+    </div>
+
+    <div>
+      <h4 class="text-3xl font-bold counter" data-target="350">0</h4>
+      <p class="text-sm mt-2">Projects Completed</p>
+    </div>
+
+    <div>
+      <h4 class="text-3xl font-bold counter" data-target="98">0</h4>
+      <p class="text-sm mt-2">Client Satisfaction %</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- PRICING -->
+<section id="pricing" class="py-20 px-6">
+  <div class="max-w-6xl mx-auto text-center">
+    <h3 class="text-2xl font-semibold mb-12 fade-up">Pricing Plans</h3>
+
+    <div class="grid md:grid-cols-3 gap-8 text-sm">
+
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow fade-up">
+        <h4 class="font-semibold mb-4">Starter</h4>
+        <p class="text-2xl font-bold mb-4">$19</p>
+        <p>Basic features for small teams.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow-lg border-2 border-indigo-600 fade-up">
+        <h4 class="font-semibold mb-4">Professional</h4>
+        <p class="text-2xl font-bold mb-4">$49</p>
+        <p>Advanced tools for growing businesses.</p>
+      </div>
+
+      <div class="bg-white dark:bg-gray-800 p-8 rounded-lg shadow fade-up">
+        <h4 class="font-semibold mb-4">Enterprise</h4>
+        <p class="text-2xl font-bold mb-4">$99</p>
+        <p>Full solution for large organizations.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="py-20 bg-gray-100 dark:bg-gray-800 px-6">
+  <div class="max-w-3xl mx-auto text-center fade-up">
+    <h3 class="text-2xl font-semibold mb-6">Contact Us</h3>
+
+    <input type="text" placeholder="Your Name"
+      class="w-full p-3 mb-4 rounded bg-white dark:bg-gray-700 text-sm">
+
+    <input type="email" placeholder="Your Email"
+      class="w-full p-3 mb-4 rounded bg-white dark:bg-gray-700 text-sm">
+
+    <textarea placeholder="Your Message"
+      class="w-full p-3 mb-4 rounded bg-white dark:bg-gray-700 text-sm"></textarea>
+
+    <button class="bg-indigo-600 text-white px-6 py-2.5 rounded text-sm hover:bg-indigo-700 transition">
+      Send Message
+    </button>
+  </div>
+</section>
+
+<footer class="bg-gray-900 text-gray-400 text-center text-sm py-6">
+  © 2026 NovaTech. All rights reserved.
+</footer>
+
+<script>
+/* Dark Mode */
+document.getElementById("darkToggle").onclick = () => {
+  document.documentElement.classList.toggle("dark");
+};
+
+/* Mobile Menu */
+document.getElementById("menuBtn").onclick = () => {
+  document.getElementById("mobileMenu").classList.toggle("hidden");
+};
+
+/* Scroll Progress */
+window.onscroll = function() {
+  const winScroll = document.documentElement.scrollTop;
+  const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+  const scrolled = (winScroll / height) * 100;
+  document.getElementById("progressBar").style.width = scrolled + "%";
+};
+
+/* Fade Animation */
+const faders = document.querySelectorAll(".fade-up");
+const observer = new IntersectionObserver(entries => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+faders.forEach(f => observer.observe(f));
+
+/* Animated Counters */
+const counters = document.querySelectorAll(".counter");
+counters.forEach(counter => {
+  const updateCount = () => {
+    const target = +counter.getAttribute("data-target");
+    const count = +counter.innerText;
+    const increment = target / 200;
+
+    if(count < target){
+      counter.innerText = Math.ceil(count + increment);
+      setTimeout(updateCount, 10);
+    } else {
+      counter.innerText = target;
+    }
+  };
+  updateCount();
+});
+</script>
+
+</body>
+</html>
