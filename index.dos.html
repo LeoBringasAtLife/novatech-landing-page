@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="NovaTech - Soluciones digitales modernas para startups y desarrolladores">
+
+  <title>NovaTech - Soluciones Digitales</title>
+
+  <script src="https://cdn.tailwindcss.com"></script>
+
+<!-- el script de tailwind css el CDN no usar en producción, solo para desarrollo. -->
+
+  <style>
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .fade-up {
+      opacity: 0;
+      animation: fadeUp 0.7s ease forwards;
+    }
+
+    .fade-up {
+      animation-play-state: paused;
+    }
+
+    .fade-up.visible {
+      animation-play-state: running;
+    }
+
+    /* Transiciones */
+    * {
+      transition-property: background-color, border-color, color, fill, stroke;
+      transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+      transition-duration: 300ms;
+    }
+
+    /* Mejora de accesibilidad */
+    .focus-visible:focus {
+      outline: 2px solid #4f46e5;
+      outline-offset: 2px;
+    }
+
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+      scroll-padding-top: 4rem;
+    }
+
+    /* Barra de progreso */
+    #progressBar {
+      will-change: width;
+      transition: width 0.1s ease;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 antialiased">
+
+<!-- Barra de Progreso -->
+<div id="progressBar" class="fixed top-0 left-0 h-1 bg-indigo-600 dark:bg-indigo-400 z-50 w-0" role="progressbar" aria-label="Progreso de lectura"></div>
+
+<!-- Navegación -->
+<nav class="fixed w-full bg-white/80 dark:bg-gray-800/80 backdrop-blur-sm shadow-sm z-40" aria-label="Navegación principal">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
+    <div class="flex justify-between items-center">
+      
+      <!-- Logo -->
+      <a href="#home" class="text-xl font-bold text-indigo-600 dark:text-indigo-400 hover:text-indigo-700 dark:hover:text-indigo-300 transition-colors" aria-label="NovaTech - Ir al inicio">
+        NovaTech
+      </a>
+
+      <!-- Menú Desktop -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#home" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Inicio</a>
+        <a href="#features" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Características</a>
+        <a href="#pricing" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Precios</a>
+        <a href="#contact" class="text-sm font-medium hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contacto</a>
+      </div>
+
+      <!-- Controles -->
+      <div class="flex items-center space-x-4">
+        <button id="darkToggle" class="px-3 py-2 text-sm font-medium text-white bg-indigo-600 dark:bg-indigo-500 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 dark:focus:ring-offset-gray-800" aria-label="Cambiar tema oscuro/claro">
+          <span id="themeText">Oscuro</span>
+        </button>
+
+        <button id="menuBtn" class="md:hidden p-2 text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 rounded-lg" aria-label="Abrir menú móvil" aria-expanded="false">
+          <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Menú Móvil -->
+    <div id="mobileMenu" class="hidden md:hidden mt-4 py-4 border-t border-gray-200 dark:border-gray-700" aria-label="Navegación móvil">
+      <div class="flex flex-col space-y-3">
+        <a href="#home" class="text-sm font-medium py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Inicio</a>
+        <a href="#features" class="text-sm font-medium py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Características</a>
+        <a href="#pricing" class="text-sm font-medium py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Precios</a>
+        <a href="#contact" class="text-sm font-medium py-2 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">Contacto</a>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero Section -->
+<section id="home" class="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 pt-16" aria-label="Sección principal">
+  <div class="max-w-4xl mx-auto text-center fade-up visible">
+    <h1 class="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6 bg-gradient-to-r from-indigo-600 to-purple-600 dark:from-indigo-400 dark:to-purple-400 bg-clip-text text-transparent">
+      Construye Productos Digitales Inteligentes
+    </h1>
+    <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+      Ayudamos a startups y desarrolladores a crear plataformas web escalables, modernas y de alto rendimiento.
+    </p>
+    <a href="#pricing" class="inline-block px-8 py-3 text-base font-medium text-white bg-indigo-600 dark:bg-indigo-500 rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-600 transition-colors focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+      Comenzar Ahora
+    </a>
+  </div>
+</section>
+
+<!-- Características -->
+<section id="features" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900" aria-label="Características">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 fade-up visible">Características Principales</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto fade-up visible">
+      Todo lo que necesitas para llevar tu proyecto al siguiente nivel
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow fade-up visible">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Rendimiento Rápido</h3>
+        <p class="text-gray-600 dark:text-gray-400">Arquitectura optimizada que garantiza tiempos de carga ultrarrápidos.</p>
+      </article>
+
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow fade-up visible">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 5a1 1 0 011-1h14a1 1 0 011 1v2a1 1 0 01-1 1H5a1 1 0 01-1-1V5zM4 13a1 1 0 011-1h6a1 1 0 011 1v6a1 1 0 01-1 1H5a1 1 0 01-1-1v-6zM16 13a1 1 0 011-1h2a1 1 0 011 1v6a1 1 0 01-1 1h-2a1 1 0 01-1-1v-6z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">UI Moderna</h3>
+        <p class="text-gray-600 dark:text-gray-400">Interfaz limpia y minimalista construida con Tailwind CSS.</p>
+      </article>
+
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow fade-up visible">
+        <div class="w-12 h-12 bg-indigo-100 dark:bg-indigo-900/30 rounded-lg flex items-center justify-center mb-4">
+          <svg class="w-6 h-6 text-indigo-600 dark:text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path>
+          </svg>
+        </div>
+        <h3 class="text-xl font-semibold mb-2">Sistema Seguro</h3>
+        <p class="text-gray-600 dark:text-gray-400">Construido siguiendo las mejores prácticas de seguridad.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Contadores -->
+<section class="py-16 bg-indigo-600 dark:bg-indigo-700 text-white" aria-label="Estadísticas">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+      
+      <div class="fade-up visible">
+        <div class="text-4xl md:text-5xl font-bold counter" data-target="1200" aria-label="Usuarios activos">0</div>
+        <p class="text-lg mt-2 text-indigo-100">Usuarios Activos</p>
+      </div>
+
+      <div class="fade-up visible">
+        <div class="text-4xl md:text-5xl font-bold counter" data-target="350" aria-label="Proyectos completados">0</div>
+        <p class="text-lg mt-2 text-indigo-100">Proyectos Completados</p>
+      </div>
+
+      <div class="fade-up visible">
+        <div class="text-4xl md:text-5xl font-bold counter" data-target="98" aria-label="Porcentaje de satisfacción">0</div>
+        <p class="text-lg mt-2 text-indigo-100">Satisfacción del Cliente</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- Precios -->
+<section id="pricing" class="py-20 px-4 sm:px-6 lg:px-8" aria-label="Planes de precios">
+  <div class="max-w-7xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 fade-up visible">Planes de Precios</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-12 max-w-2xl mx-auto fade-up visible">
+      Elige el plan perfecto para tu proyecto
+    </p>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+      
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow fade-up visible">
+        <h3 class="text-2xl font-bold mb-2">Básico</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Perfecto para empezar</p>
+        <div class="text-4xl font-bold mb-6">$19<span class="text-lg text-gray-500 dark:text-gray-400">/mes</span></div>
+        <ul class="space-y-3 mb-8 text-gray-600 dark:text-gray-400">
+          <li class="flex items-center">✓ 5 proyectos</li>
+          <li class="flex items-center">✓ 10GB almacenamiento</li>
+          <li class="flex items-center">✓ Soporte básico</li>
+        </ul>
+        <button class="w-full py-2 px-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors font-medium">
+          Comenzar
+        </button>
+      </article>
+
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg border-2 border-indigo-600 dark:border-indigo-500 transform scale-105 fade-up visible">
+        <span class="inline-block px-3 py-1 text-xs font-semibold text-indigo-600 dark:text-indigo-400 bg-indigo-100 dark:bg-indigo-900/30 rounded-full mb-4">Más Popular</span>
+        <h3 class="text-2xl font-bold mb-2">Profesional</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Para equipos en crecimiento</p>
+        <div class="text-4xl font-bold mb-6">$49<span class="text-lg text-gray-500 dark:text-gray-400">/mes</span></div>
+        <ul class="space-y-3 mb-8 text-gray-600 dark:text-gray-400">
+          <li class="flex items-center">✓ Proyectos ilimitados</li>
+          <li class="flex items-center">✓ 50GB almacenamiento</li>
+          <li class="flex items-center">✓ Soporte prioritario</li>
+        </ul>
+        <button class="w-full py-2 px-4 bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 text-white rounded-lg transition-colors font-medium">
+          Comenzar
+        </button>
+      </article>
+
+      <article class="bg-white dark:bg-gray-800 p-8 rounded-xl shadow-lg hover:shadow-xl transition-shadow fade-up visible">
+        <h3 class="text-2xl font-bold mb-2">Empresarial</h3>
+        <p class="text-gray-600 dark:text-gray-400 mb-4">Para grandes organizaciones</p>
+        <div class="text-4xl font-bold mb-6">$99<span class="text-lg text-gray-500 dark:text-gray-400">/mes</span></div>
+        <ul class="space-y-3 mb-8 text-gray-600 dark:text-gray-400">
+          <li class="flex items-center">✓ Proyectos ilimitados</li>
+          <li class="flex items-center">✓ 200GB almacenamiento</li>
+          <li class="flex items-center">✓ Soporte 24/7</li>
+        </ul>
+        <button class="w-full py-2 px-4 bg-gray-100 dark:bg-gray-700 hover:bg-gray-200 dark:hover:bg-gray-600 rounded-lg transition-colors font-medium">
+          Contactar
+        </button>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- Contacto -->
+<section id="contact" class="py-20 px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-800" aria-label="Formulario de contacto">
+  <div class="max-w-3xl mx-auto">
+    <h2 class="text-3xl sm:text-4xl font-bold text-center mb-4 fade-up visible">Contáctanos</h2>
+    <p class="text-lg text-gray-600 dark:text-gray-400 text-center mb-12 fade-up visible">
+      Estamos aquí para ayudarte
+    </p>
+
+    <form id="contactForm" class="space-y-6 fade-up visible" onsubmit="handleSubmit(event)">
+      <div>
+        <label for="name" class="block text-sm font-medium mb-2">Nombre</label>
+        <input type="text" id="name" name="name" required class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" placeholder="Tu nombre">
+      </div>
+
+      <div>
+        <label for="email" class="block text-sm font-medium mb-2">Email</label>
+        <input type="email" id="email" name="email" required class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" placeholder="tu@email.com">
+      </div>
+
+      <div>
+        <label for="message" class="block text-sm font-medium mb-2">Mensaje</label>
+        <textarea id="message" name="message" rows="4" required class="w-full px-4 py-3 rounded-lg bg-white dark:bg-gray-700 border border-gray-300 dark:border-gray-600 focus:border-indigo-500 dark:focus:border-indigo-400 focus:ring-2 focus:ring-indigo-500 focus:outline-none transition" placeholder="Tu mensaje..."></textarea>
+      </div>
+
+      <button type="submit" class="w-full py-3 px-6 text-white bg-indigo-600 dark:bg-indigo-500 hover:bg-indigo-700 dark:hover:bg-indigo-600 rounded-lg transition-colors font-medium focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
+        Enviar Mensaje
+      </button>
+    </form>
+  </div>
+</section>
+
+<!-- Footer -->
+<footer class="bg-gray-900 text-gray-400 py-12" aria-label="Pie de página">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8 mb-8">
+      <div>
+        <h4 class="text-white font-bold mb-4">NovaTech</h4>
+        <p class="text-sm">Soluciones digitales modernas para el futuro.</p>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Producto</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#features" class="hover:text-white transition-colors">Características</a></li>
+          <li><a href="#pricing" class="hover:text-white transition-colors">Precios</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Compañía</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#about" class="hover:text-white transition-colors">Sobre Nosotros</a></li>
+          <li><a href="#contact" class="hover:text-white transition-colors">Contacto</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="text-white font-bold mb-4">Legal</h4>
+        <ul class="space-y-2 text-sm">
+          <li><a href="#" class="hover:text-white transition-colors">Privacidad</a></li>
+          <li><a href="#" class="hover:text-white transition-colors">Términos</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="text-center text-sm pt-8 border-t border-gray-800">
+      <p>&copy; 2026 NovaTech. Todos los derechos reservados.</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  'use strict';
+
+  // Configuración
+  const CONFIG = {
+    ANIMATION_DELAY: 100,
+    COUNTER_SPEED: 200,
+    SCROLL_THROTTLE: 100
+  };
+
+  // Utilidades
+  const $ = selector => document.querySelector(selector);
+  const $$ = selector => document.querySelectorAll(selector);
+
+  // Gestión del tema
+  const themeManager = {
+    init() {
+      this.button = $('#darkToggle');
+      this.themeText = $('#themeText');
+      this.loadTheme();
+      this.button.addEventListener('click', () => this.toggle());
+    },
+
+    loadTheme() {
+      const isDark = localStorage.getItem('darkMode') === 'true';
+      document.documentElement.classList.toggle('dark', isDark);
+      this.updateButtonText(isDark);
+    },
+
+    toggle() {
+      const isDark = document.documentElement.classList.toggle('dark');
+      localStorage.setItem('darkMode', isDark);
+      this.updateButtonText(isDark);
+    },
+
+    updateButtonText(isDark) {
+      if (this.themeText) {
+        this.themeText.textContent = isDark ? 'Claro' : 'Oscuro';
+      }
+    }
+  };
+
+  // Menú móvil
+  const mobileMenu = {
+    init() {
+      this.button = $('#menuBtn');
+      this.menu = $('#mobileMenu');
+      if (!this.button || !this.menu) return;
+      
+      this.button.addEventListener('click', () => this.toggle());
+      this.setupLinks();
+    },
+
+    toggle() {
+      const isHidden = this.menu.classList.contains('hidden');
+      this.menu.classList.toggle('hidden');
+      this.button.setAttribute('aria-expanded', !isHidden);
+    },
+
+    setupLinks() {
+      $$('#mobileMenu a').forEach(link => {
+        link.addEventListener('click', () => {
+          this.menu.classList.add('hidden');
+          this.button.setAttribute('aria-expanded', 'false');
+        });
+      });
+    }
+  };
+
+  // Barra de progreso
+  const progressBar = {
+    init() {
+      this.bar = $('#progressBar');
+      if (!this.bar) return;
+      
+      this.update = this.update.bind(this);
+      window.addEventListener('scroll', this.throttle(this.update, CONFIG.SCROLL_THROTTLE));
+      window.addEventListener('resize', this.throttle(this.update, CONFIG.SCROLL_THROTTLE));
+    },
+
+    update() {
+      const winScroll = window.scrollY;
+      const height = document.documentElement.scrollHeight - window.innerHeight;
+      const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+      this.bar.style.width = scrolled + '%';
+    },
+
+    throttle(func, limit) {
+      let inThrottle;
+      return function(...args) {
+        if (!inThrottle) {
+          func.apply(this, args);
+          inThrottle = setTimeout(() => inThrottle = false, limit);
+        }
+      };
+    }
+  };
+
+  // Contador Animado
+  const counters = {
+    init() {
+      this.counters = $$('.counter');
+      if (!this.counters.length) return;
+      
+      this.observer = new IntersectionObserver(
+        entries => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              this.animateCounter(entry.target);
+              this.observer.unobserve(entry.target);
+            }
+          });
+        },
+        { threshold: 0.5 }
+      );
+
+      this.counters.forEach(counter => this.observer.observe(counter));
+    },
+
+    animateCounter(counter) {
+      const target = parseInt(counter.getAttribute('data-target')) || 0;
+      if (target === 0) return;
+
+      let current = 0;
+      const increment = target / CONFIG.COUNTER_SPEED;
+      const updateCounter = () => {
+        current += increment;
+        if (current < target) {
+          counter.textContent = Math.ceil(current);
+          requestAnimationFrame(updateCounter);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      requestAnimationFrame(updateCounter);
+    }
+  };
+
+  // formulario
+  function handleSubmit(event) {
+    event.preventDefault();
+    const form = event.target;
+    const formData = new FormData(form);
+    
+    console.log('Formulario enviado:', Object.fromEntries(formData));
+    
+    const button = form.querySelector('button[type="submit"]');
+    const originalText = button.textContent;
+    button.textContent = '¡Enviado!';
+    button.disabled = true;
+    
+    setTimeout(() => {
+      button.textContent = originalText;
+      button.disabled = false;
+      form.reset();
+    }, 2000);
+  }
+
+  // Inicialización
+  document.addEventListener('DOMContentLoaded', () => {
+    themeManager.init();
+    mobileMenu.init();
+    progressBar.init();
+    counters.init();
+    window.handleSubmit = handleSubmit;
+  });
+
+})();
+</script>
+
+</body>
+</html>
